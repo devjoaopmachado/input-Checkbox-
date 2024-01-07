@@ -1,0 +1,141 @@
+body {
+    text-align: center;
+}
+
+label span {
+    display: inline-block;
+    background-color: rgb(255, 255, 255); /*z-index no input*/
+    font-size: 11px;
+    width: 1em;
+    height: 1em;
+    border: .09em solid #737373;
+    border-radius: .18em;
+}
+
+/* -------------------------#01 sem acessibilidade------------------*/
+
+.chk1 {
+    display: none;
+}
+
+.chk1:checked+label>span {
+    background-color: #737373;
+}
+
+.chk1:checked+label>span::before {
+    content: "";
+    display: block;
+    width: .73em;
+    height: .27em;
+    border-bottom: .18em solid rgb(255, 255, 255);
+    border-left: .18em solid rgb(255, 255, 255);
+    transform: rotate(315deg) translate(-.09em, .18em) scale(.8);
+}
+
+.chk1:checked+label>span:hover {
+    background-color: #454545;
+}
+
+.chk1+label:hover span {
+    border: .09em solid #454545;
+}
+
+.chk1:checked+label:hover span {
+    background-color: #454545;
+    border: .09em solid #454545;
+}
+
+/* ------------------#02 com acessibilidade---------------*/
+.lb12:has(input[type=checkbox]:checked) span {
+    background-color: #737373;
+}
+
+.lb12:has(input[type=checkbox]:checked) span::before {
+    content: "";
+    display: block;
+    width: .73em;
+    height: .27em;
+    border-bottom: .18em solid rgb(255, 255, 255);
+    border-left: .18em solid rgb(255, 255, 255);
+    transform: rotate(315deg) translate(-.09em, .18em) scale(.8);
+}
+
+.lb12:hover:has(input[type=checkbox]:checked) span {
+    background-color: #454545;
+    border-color: #454545;
+}
+
+.lb12:hover span {
+    border-color: #454545;
+}
+
+/* --------------------------acessibilidade----------------------*/
+.lb12 input[type=checkbox] {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    right: -5px;
+    bottom: 5px; 
+    z-index: -1; /*background span*/
+    outline: none;
+}
+
+.lb12 input[type=checkbox]:focus+span {
+    outline: 1px solid black;
+    outline-offset: 1px;
+}
+ /* ------------------#03 com acessibilidade---------------*/
+ .switch span {
+    background-color:#dbdbdb;
+  display: inline-block;
+    font-size: 11px;
+    width: 2em;
+    height: 1em;
+ border: none;
+   border-radius: 1em;
+}
+
+.switch input[type=checkbox]+span::before {
+content: "";
+display: block;
+position: relative;
+width: 1em;
+height: 1em;
+background-color: rgb(255, 255, 255);
+outline: .3px solid rgba(108, 108, 108, 0.458);
+border-radius: 1em;   
+transition: background-color 1s ease-in .1s , transform cubic-bezier(.06,0,1,1.88) .7s;
+}
+
+.switch input[type=checkbox]:checked+span::before {
+    content: '';
+    transform: translateX(1em);            
+    background-color: rgb(2, 255, 61);
+    outline: .3px solid rgba(108, 108, 108, 0.458);         
+}
+
+.switch:has(input[type=checkbox]:checked) span {
+    background-color: #dbdbdb;
+}
+
+
+.switch input[type=checkbox] {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    top: -5px;
+    right: -10px;
+    outline: none;
+    z-index: -1;
+}
+
+.switch input[type=checkbox]:focus-visible+span {
+    outline: 1px solid black;
+    outline-offset: 1px; 
+}       
